@@ -65,3 +65,34 @@ void APPCharacterBase::SetCharacterControlData(const UPPCharacterControlData* Ch
 	GetCharacterMovement()->RotationRate = CharacterControlData->RotationRate;
 }
 
+
+
+void APPCharacterBase::AddKeyCard(FName keyName)  // 아이템 추가
+{
+	if (!KeyCards.Contains(keyName))
+	{
+		KeyCards.Add(keyName, true);
+	}
+	UE_LOG(LogTemp, Log, TEXT("get"));
+
+	if (KeyCards.Contains(keyName))
+	{
+		bool Value = KeyCards[keyName];
+		UE_LOG(LogTemp, Warning, TEXT("Key: %s, Value: %d"), *keyName.ToString(), Value ? 1 : 0);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Key not found in KeyCards map: %s"), *keyName.ToString());
+	}
+
+}
+
+bool APPCharacterBase::CheckKeyCard(FName keyName)  // 아이템 유무 확인
+{
+	if (KeyCards.Contains(keyName))
+	{
+		return true;
+	}
+
+	return false;
+}

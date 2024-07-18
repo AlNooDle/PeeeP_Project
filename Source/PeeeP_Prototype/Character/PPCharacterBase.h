@@ -22,6 +22,9 @@ public:
 	// Sets default values for this character's properties
 	APPCharacterBase();
 
+	void AddKeyCard(FName);
+	bool CheckKeyCard(FName);
+
 protected:
 	virtual void SetCharacterControlData(const class UPPCharacterControlData* CharacterControlData);
 
@@ -29,4 +32,7 @@ protected:
 	// TMap -> python에 있는 Dictionary랑 비슷
 	// TMap<[Key], [Value]>
 	TMap<ECharacterControlType, class UPPCharacterControlData*> CharacterControlManager;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Key")
+	TMap<FName, bool> KeyCards;
 };
